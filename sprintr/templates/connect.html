@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Connect sPrintr{% endblock %}
+
+{% block content %}
+<h1>Connect to sPrintr</h1>
+
+<div class="d-flex justify-content-evenly" display="flex"> 
+    <form>
+        <div class="form-group">
+          <label for="robot-url">roborock URL</label>
+          <input type="text" class="form-control" id="robot-url" aria-describedby="urlHelp" placeholder="Enter valetudo url">
+          <small id="robot-url-help" class="form-text text-muted">This can be found through the Valetudo Panel</small>
+        </div>
+        <button id="connect-robot-btn" type="submit" class="btn btn-primary" style="width:fit-content";>Connect</button>
+        <div id="robot-success" class="alert alert-success" role="alert" style="display:none"></div>
+        <div id="robot-error" class="alert alert-danger" role="alert" style="display:none"></div>
+      </form>
+
+      <form>
+        <div class="form-group">
+          <label for="printer-url">Printer URL</label>
+          <input type="text" class="form-control" id="printer-ip" aria-describedby="urlHelp" placeholder="Enter printer IP">
+          <small id="printer-url-help" class="form-text text-muted">Enter the Printers IP Address</small>
+        </div>
+        <button id="connect-printer-btn" type="submit" class="btn btn-primary" style="width:fit-content">Connect</button>
+        <div id="printer-success" class="alert alert-success" role="alert" style="display:none"></div>
+        <div id="printer-error" class="alert alert-danger" role="alert" style="display:none"></div>
+      </form>
+</div>
+<a id="connection-complete-btn" href="{{ url_for('sprintr.home')}}" class="btn btn-primary" style="display:none; width:fit-content" >Continue</a>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Sprintr{% endblock %}
+
+{% block content %}
+    <!-- <header>sPrintr Test</header> -->
+    <div class="container-fluid" height="100%">
+        <div class="row" height="1000px">
+            <div id= "valetudo-map" class="col-lg" width="100%" height="1000px">
+                <!-- <img class='map-image' alt="Map from Valetudo" src="{{url_for('static', filename='sample-map.png')}}" /> -->
+                <iframe src="http://127.0.0.1:5501/mapping/build/index.html#/" width="100%"height="1000px"  ></iframe>
+            </div>
+            <div class="col-sm manual-controls">
+                <header style="text-align: center;"> Manual Controls</header>
+                <div class="manual-wrapper"> 
+                    <div class="dpad-body">
+                        <div class="wrapper">
+                            <div class="center">
+                                <div class="center-circle"></div>
+                            </div>
+                            <div class="up direction">
+                                <div class="up-triangle"></div>
+                            </div>
+                            <div class="right direction">
+                                <div class="right-triangle"></div>
+                            </div>
+                            <div class="down direction">
+                                <div class="down-triangle"></div>
+                            </div>
+                            <div class="left direction">
+                                <div class="left-triangle"></div>
+                            </div>
+                        </div>   
+                    </div>
+                    <button id="home-robot" class="btn btn-primary" style="width: fit-content"><i class="fa fa-home"></i>Home</a>
+                    <button id="stop-robot" class="btn btn-primary" style="width: fit-content"><i class="fa-stop"></i>Stop</button>
+                </div> 
+            </div>
+        <!-- GCODE CONSOLE -->
+        <div class="row">
+            <div class="console col">
+                <h1> G Code Console</h1>
+                <br>
+                <label>Send G Code</label>
+                <input method="post" type="text" action="prompt" id="gcode-entry" name="gcode-entry" value=""></input>
+
+                <!-- add existing gCodeCommands to textarea -->
+                <textarea id="gcode-response" name="console" readonly="true" ></textarea>
+                <!-- <textarea id="gcode-console"></textarea> -->
+                <br>
+                <form method="POST">
+                    <input type="text" id="gcode-entry" name="gcode-entry" value=""> </input>
+                    
+                    <input class="send-gcode" type="submit" value="Submit" >
+                </form>
+            </div>
+       
+        <!-- STL MODEL LIBRARY -->
+            <div class="col">
+                <div class="overflow-scroll row row-cols-1 row-cols-md-2 g-4">
+                    {% for model in models %}
+
+                        <div class="col">
+                        <div id="modelLibrary{{model.filename}}" class="card h-100">
+                            <img src="static/3dmodels/{{ model }}.png" class="card-img-top" alt="image not found">
+                            <div class="card-body">
+                            <h5 class="card-title">File: <span id="cardTitle{{model.filename}}">
+                                {{ model[:-4] }}
+                            </span></h5>
+                            <p class="card-text">Description of Object</p>
+                            <div class="btn-toolbar" role="toolbar">
+                                <a href ="view/{{ model }}" class="btn btn-primary" style="width: min-content;">View</a>
+                                <a href ="delete/{{ model }}" class="btn btn-primary" style="width: min-content;">Delete</a>
+                            </div>
+                            </div>
+                        </div>
+                        </div> 
+                    {% endfor %} 
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+{% endblock %} 
+
