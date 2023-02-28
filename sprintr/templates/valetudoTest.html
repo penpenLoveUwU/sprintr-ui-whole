@@ -3,12 +3,17 @@
 {% block title %}Sprintr{% endblock %}
 
 {% block content %}
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+
     <!-- <header>sPrintr Test</header> -->
     <div class="container-fluid" height="100%">
         <div class="row" height="1000px">
             <div id= "valetudo-map" class="col-lg" width="100%" height="1000px">
                 <!-- <img class='map-image' alt="Map from Valetudo" src="{{url_for('static', filename='sample-map.png')}}" /> -->
-                <iframe src="http://127.0.0.1:5501/mapping/build/index.html#/" width="100%"height="1000px"  ></iframe>
+                <div id = "myDiv">
+                    
+                </div>
             </div>
             <div class="col-sm manual-controls">
                 <header style="text-align: center;"> Manual Controls</header>
@@ -81,6 +86,6 @@
         </div>
     </div>
   
-
+    <script type="module" src="{{ url_for('static', filename='react/build/js/bundle.js')}}"></script>
 {% endblock %} 
 

@@ -1,0 +1,81 @@
+import { Box, Grid, Icon, Paper, styled } from "@mui/material";
+import ControlsBody from "./ControlsBody";
+import { ReactComponent as Logo } from "../assets/icons/valetudo_logo_with_name.svg";
+import { ExpandLess as OpenIcon, ExpandMore as CloseIcon } from "@mui/icons-material";
+import React from "react";
+const MobileControls = ({
+  open,
+  setOpen
+}) => {
+  const StyledIcon = styled(Icon)(({
+    theme
+  }) => {
+    return {
+      fontSize: "2.5em"
+    };
+  });
+  const ControlsSheetContainer = styled(Box)(({
+    theme
+  }) => {
+    const color = theme.palette.mode === "light" ? "#ededed" : "#242424";
+    return {
+      backgroundColor: color,
+      borderColor: color,
+      borderTopWidth: "4px",
+      borderLeftWidth: "1px",
+      borderRightWidth: "1px",
+      borderBottomWidth: "1px",
+      borderStyle: "solid",
+      borderTopLeftRadius: "4px",
+      borderTopRightRadius: "4px",
+      paddingTop: "0.125rem"
+    };
+  });
+  return /*#__PURE__*/React.createElement(Paper, {
+    sx: {
+      height: "100%"
+    }
+  }, /*#__PURE__*/React.createElement(ControlsSheetContainer, {
+    style: {
+      display: open ? "" : "none",
+      height: "calc(95% - 68px)"
+    }
+  }, /*#__PURE__*/React.createElement(Box, {
+    p: 1,
+    sx: {
+      overflow: open ? "scroll" : "hidden",
+      height: "100%"
+    }
+  }, /*#__PURE__*/React.createElement(ControlsBody, null))), /*#__PURE__*/React.createElement(Grid, {
+    container: true,
+    direction: "row",
+    sx: {
+      height: "68px"
+    },
+    onClick: () => {
+      setOpen(!open);
+    }
+  }, /*#__PURE__*/React.createElement(Grid, {
+    item: true
+  }, /*#__PURE__*/React.createElement(Box, {
+    px: 2,
+    pt: 2,
+    pb: 1
+  }, /*#__PURE__*/React.createElement(Logo, {
+    style: {},
+    width: 200,
+    height: 36
+  }))), /*#__PURE__*/React.createElement(Grid, {
+    item: true,
+    sx: {
+      marginLeft: "auto"
+    }
+  }, /*#__PURE__*/React.createElement(Box, {
+    px: 2,
+    pt: 2,
+    pb: 1
+  }, /*#__PURE__*/React.createElement(StyledIcon, {
+    as: open ? CloseIcon : OpenIcon
+  })))));
+};
+export default MobileControls;
